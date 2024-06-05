@@ -1,5 +1,35 @@
+HOF:
 let is_present lst x =
   List.map (fun y -> if y = x then 1 else 0) lst;;
 
 let count_occ lst target =
   List.fold_left (fun acc x -> if x = target then acc + 1 else acc) 0 lst;;
+
+let uniq lst =
+  let rec aux seen = function
+    | [] -> seen
+    | x :: xs -> if List.mem x seen then aux seen xs else aux (x :: seen) xs
+  in
+  aux [] lst;;
+
+let find_max matrix =
+  let max_in_list lst = List.fold_left max 0 lst in
+  List.fold_left (fun acc lst -> max acc (max_in_list lst)) 0 matrix;;
+
+let count_ones matrix =
+  let count_ones_in_list lst = List.fold_left (fun acc x -> if x = 1 then acc + 1 else acc) 0 lst in
+  List.fold_left (fun acc lst -> acc + (count_ones_in_list lst)) 0 matrix;;
+
+let addgenerator x =
+  fun y -> x + y;;
+
+let apply_to_self () =
+  fun (x, f) -> x + f x;;
+
+let ap fns args =
+  List.flatten (List.map (fun fn -> List.map fn args) fns);;
+
+let map2 matrix f =
+  List.map (fun row -> List.map f row) matrix;;
+
+REGEX:
