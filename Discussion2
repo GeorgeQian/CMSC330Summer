@@ -1,0 +1,5 @@
+let is_present lst x =
+  List.map (fun y -> if y = x then 1 else 0) lst;;
+
+let count_occ lst target =
+  List.fold_left (fun acc x -> if x = target then acc + 1 else acc) 0 lst;;
